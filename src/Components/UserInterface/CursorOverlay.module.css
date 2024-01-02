@@ -1,0 +1,12 @@
+.cursor {
+  --color: hsla(0, 0%, 100%, 0.5);
+  --size: 1rem;
+  border-radius: 100%;
+  border: 2px solid var(--color);
+  height: var(--size);
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--size);
+}

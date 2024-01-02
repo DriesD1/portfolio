@@ -1,0 +1,69 @@
+{
+  "name": "ixr-starter-code",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "/ixr-«github-account-name»",
+  "proxy": "https://pgmgent-2324-ixr.github.io",
+  "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@react-three/drei": "9.92.1",
+    "@react-three/fiber": "^8.15.12",
+    "@react-three/flex": "^1.0.1",
+    "@react-three/postprocessing": "^2.15.11",
+    "@react-three/rapier": "^1.2.1",
+    "@react-three/rapier-addons": "^3.0.3",
+    "@react-three/test-renderer": "^8.2.0",
+    "@react-three/xr": "^5.7.1",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
+    "framer-motion-3d": "^10.16.16",
+    "gsap": "^3.12.3",
+    "leva": "0.9.34",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.0",
+    "react-scripts": "5.0.1",
+    "three": "^0.159.0",
+    "three-stdlib": "^2.28.7",
+    "web-vitals": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.15",
+    "@types/three": "^0.159.0",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "git:wip": "git add . && git commit -a -m [WIP] && git push --set-upstream origin main",
+    "github:repo": "gh browse",
+    "npm:install:yarn": "npm install --global yarn",
+    "yarn:install": "yarn",
+    "yarn:outdated": "yarn outdated || cd .",
+    "yarn:update": "yarn upgrade-interactive --latest"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
