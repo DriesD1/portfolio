@@ -1,23 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const firstName = 'Jesse';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app bg-red-900">
+      <h1>Waddup</h1>
+      <p>My name is {firstName}</p>
+      <p>https://sketchfab.com/3d-models/crystal-raiders-zeppelin-97574c6356994c1ba7a402f4299ed02a</p>
     </div>
   );
 }
