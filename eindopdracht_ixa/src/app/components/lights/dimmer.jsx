@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import './light.css';
 
-export default function Dimmer () {
+export default function Dimmer ({onDimmerValueChanged}) {
     const [v, setV] = useState(50);
     const handleOnChange = (e) => {
         setV(e.target.value);
+
+        if (typeof onDimmerValueChanged === 'function'){
+            onDimmerValueChanged(e.target.value);
+        } 
     }
 
     return(

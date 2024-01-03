@@ -3,6 +3,6 @@ export const ROUTES = {
     ABOUT: '/about',
     CONTACT: '/contact',
     PROJECTS: '/projects',
-    PROJECT: '/projects/:projectId',
+    PROJECT: '/projects/:id',
     NOT_FOUND: '/404',
 }

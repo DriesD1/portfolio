@@ -1,27 +1,41 @@
+// import react libraries
+import { Route, Routes } from 'react-router-dom';
+
+// import styles
 import { Header } from "./components/layouts";
+import { ROUTES } from './routes';
 
 // import fonts
 import '@fontsource-variable/inter';
 import '@fontsource/dm-serif-text';
+import { AboutPage, ContactPage, HomePage, ProjectPage, ProjectsPage } from './pages';
 
 // import components
-import { Dimmer, Light } from "./components/lights";
+
 
 
 function App() {
   const firstName = 'Jesse';
   return (
-    <div className="bg-red-700">
+    <div>
       <Header />
       <main>
-        <h1 className="text-center">Hello {firstName}!</h1>
-        <h2 className="text-center">Hello {firstName}!</h2>
-        <h3 className="text-center">Hello {firstName}!</h3>
-        <Light v={20} color={{hue: 100, saturation: 50, lightness: 50}}/>
-        <Dimmer/>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<HomePage/>} />
+          <Route path={ROUTES.ABOUT} element={<AboutPage/>} />
+          <Route path={ROUTES.CONTACT} element={<ContactPage/>} />
+          <Route path={ROUTES.PROJECTS}>
+            <Route index element={<ProjectsPage/>} />
+            <Route path={ROUTES.PROJECT} element={<ProjectPage/>} />
+          </Route>
+          <Route path={ROUTES.NOT_FOUND} element={<h1>404</h1>} />
+        </Routes>
+
+        <h1 className="text-4xl text-center text-white font-serif">Hello {firstName}!</h1>
       </main>
     </div>
   );
 }
 
 export default App;
+
