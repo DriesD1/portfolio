@@ -1,0 +1,3 @@
+.light {
+    @apply font-body w-48 h-48 bg-purple-800 indent-[-999em] rounded-full;
+}

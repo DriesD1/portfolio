@@ -1,9 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/app/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      inter: ['Inter', 'sans-serif'],
+      dm: ['DM Serif Text', 'serif'],
+      body: ['Inter', 'sans-serif'],
+      heading: ['DM Serif Text', 'serif'],
+      sans: ['Inter', 'sans-serif'],
+      serif: ['DM Serif Text', 'serif'],
+    },
     colors: {
       purple:{
         800: '#190482',
