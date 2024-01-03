@@ -1,5 +1,5 @@
 import { settings } from "../config";
-import { ApolloClient, ApolloProvider, ApolloLink, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, ApolloProvider, ApolloLink, HttpLink, InMemoryCache, from } from "@apollo/client";
 
 // create a HTTP link to the graphql server
 const httpLink = new HttpLink({
@@ -20,7 +20,7 @@ const apolloLink = new ApolloLink((operation, forward) => {
 // create appolo client
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: apolloLink.concat(apolloLink, httpLink),
+    link: from([apolloLink, httpLink]),
 });
 
 // create provider
