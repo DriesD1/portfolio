@@ -2,33 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes gradientMovement {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @layer base {
   body {
-    @apply font-body;
+    @apply font-body bg-gradient-to-r from-purple-700 to-purple-600 animate-gradientMovement;
+    animation-duration: 20s;
+    animation-timing-function: ease-in-out;
   }
+
+
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
 
-  h1{
+  h1 {
     @apply font-black text-5xl;
   }
 
-  h2{
+  h2 {
     @apply font-bold text-4xl;
   }
 
-  h3{
+  h3 {
     @apply font-bold text-3xl;
   }
 
-  h4{
+  h4 {
     @apply font-bold text-2xl;
   }
 
-  h5{
+  h5 {
     @apply font-bold text-xl;
   }
 }
 
+@layer components {
+  .animate-gradientMovement {
+    animation: gradientMovement 10s linear infinite;
+    background-size: 200% 100%;
+  }
+}
+
+.projects li {
+  transition: transform 0.3s ease-in-out;
+}
+
+.projects li:hover {
+  transform: translateY(-2rem);
+}
+
+.projects li img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.projects li:hover img {
+  transform: translateX(-4rem);
+}
+
+.active-link {
+  @apply bg-purple-600;
+  border-radius: 2rem;
+  padding: 0.3rem 0.8rem;
+}

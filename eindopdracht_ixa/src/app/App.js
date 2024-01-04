@@ -15,7 +15,6 @@ import { AboutPage, ContactPage, HomePage, ProjectPage, ProjectsPage } from './p
 
 
 function App() {
-  const firstName = 'Jesse';
   return (
     <HygraphProvidor>
     <div>
@@ -31,8 +30,6 @@ function App() {
           </Route>
           <Route path={ROUTES.NOT_FOUND} element={<h1>404</h1>} />
         </Routes>
-
-        <h1 className="text-4xl text-center text-white font-serif">Hello {firstName}!</h1>
       </main>
     </div>
     </HygraphProvidor>
