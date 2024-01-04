@@ -29,17 +29,17 @@ export default function ProjectsPage() {
       {data && data.projects && data.projects.length > 0 && (
         <ul className="projects w-full flex flex-wrap justify-around mt-[4rem]">
           {data.projects.map(project => (
-            <li className="mb-[2rem] bg-purple-700 rounded-[3rem]" key={project.id}>
+            <li className="mb-[2rem] bg-orange-400 rounded-[3rem]" key={project.id}>
               <Link className="relative flex flex-col w-[30rem] h-[32rem] block overflow-hidden" to={`${ROUTES.PROJECTS}/${project.slug}`} key={project.id}>
             <div className="flex flex-col p-[2rem]">
               {project.skills && project.skills.length > 0 && (
                   <div className="flex justify-end gap-2">
                     {project.skills.map(skill => (
-                      <span key={skill.id} className="text-standard-white text-end text-[10px]">{skill.title}</span>
+                      <span key={skill.id} className="text-standard-grey text-end text-[10px]">{skill.title}</span>
                     ))}
                   </div>
                 )}
-                <span className="text-standard-white text-end text-4xl">{project.title}</span>
+                <span className="text-standard-grey text-end text-4xl">{project.title}</span>
             </div>
                 <img className="rounded-[3rem] w-[30rem] h-[20rem] object-cover absolute bottom-[5rem] right-[-10rem]" src={project.projectPhoto.url} alt={project.title} />
               </Link>

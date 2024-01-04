@@ -19,7 +19,7 @@ function App() {
     <HygraphProvidor>
     <div>
       <Header />
-      <main>
+      <main className='mt-[7rem]'>
         <Routes>
           <Route path={ROUTES.HOME} element={<HomePage/>} />
           <Route path={ROUTES.ABOUT} element={<AboutPage/>} />

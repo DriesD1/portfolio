@@ -16,7 +16,7 @@
 
 @layer base {
   body {
-    @apply font-body bg-gradient-to-r from-purple-700 to-purple-600 animate-gradientMovement;
+    @apply font-body bg-gradient-to-r from-purple-700 to-purple-500 animate-gradientMovement;
     animation-duration: 20s;
     animation-timing-function: ease-in-out;
   }
@@ -60,7 +60,7 @@
 }
 
 .projects li:hover {
-  transform: translateY(-2rem);
+  transform: translateY(-0.5rem);
 }
 
 .projects li img {
