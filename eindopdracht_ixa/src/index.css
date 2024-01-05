@@ -21,8 +21,6 @@
     animation-timing-function: ease-in-out;
   }
 
-
-
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
@@ -45,6 +43,12 @@
 
   h5 {
     @apply font-bold text-xl;
+  }
+}
+
+@layer utilities {
+  .backdrop-blur {
+    backdrop-filter: blur(5px);
   }
 }
 
@@ -72,7 +76,17 @@
 }
 
 .active-link {
-  @apply bg-purple-600;
   border-radius: 2rem;
   padding: 0.3rem 0.8rem;
+}
+
+.projects li {
+  width: calc(100);
+  margin-bottom: 2rem; /* Optional: Adjust as needed */
+  align-self: flex-start; /* Default alignment */
+}
+
+.projects li:nth-child(even) {
+  align-self: flex-end;
+  margin-top: 10rem;
 }

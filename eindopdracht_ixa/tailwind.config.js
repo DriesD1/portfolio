@@ -24,6 +24,7 @@ module.exports = {
         700: '#4A90E2',
         600: '#5CACEE',
         500: '#87CEFA',
+        400: '#BDDFF9'
       },
       steelBlue: {
         800: '#0E3A4E',
@@ -64,6 +65,7 @@ module.exports = {
         black: '#000000',
         grey: '#364442',
         beige: '#F8EBD5',
+        blur: '#f4f3f0cc',
       },
     },
   },
