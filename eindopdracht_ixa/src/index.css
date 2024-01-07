@@ -80,13 +80,13 @@
   padding: 0.3rem 0.8rem;
 }
 
-.projects li {
+.projects .in-progress {
   width: calc(100);
   margin-bottom: 2rem; /* Optional: Adjust as needed */
   align-self: flex-start; /* Default alignment */
 }
 
-.projects li:nth-child(even) {
+.projects .in-progress:nth-child(even) {
   align-self: flex-end;
   margin-top: 10rem;
 }
