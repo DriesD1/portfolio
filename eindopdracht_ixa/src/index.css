@@ -52,12 +52,14 @@
   }
 }
 
+
 @layer components {
   .animate-gradientMovement {
     animation: gradientMovement 10s linear infinite;
     background-size: 200% 100%;
   }
 }
+
 
 .projects li {
   transition: transform 0.3s ease-in-out;

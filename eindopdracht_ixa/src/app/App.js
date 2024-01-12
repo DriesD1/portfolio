@@ -5,6 +5,10 @@ import { Route, Routes } from 'react-router-dom';
 import { Header } from "./components/layouts";
 import { ROUTES } from './routes';
 import { HygraphProvidor } from './services';
+import "./components/animations/index.js";
+
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 // import fonts
 import '@fontsource-variable/inter';
@@ -15,9 +19,11 @@ import { AboutPage, ContactPage, HomePage, ProjectPage, ProjectsPage } from './p
 
 
 function App() {
+  const app = useRef(null);
+  
   return (
     <HygraphProvidor>
-    <div>
+    <div ref={app}>
       <Header />
       <main className='mt-[7rem]'>
         <Routes>

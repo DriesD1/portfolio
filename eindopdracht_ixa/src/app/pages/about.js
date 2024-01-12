@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Title } from "../components/shared";
+import { ExperienceCard } from "../components/experiences";
 
 // graphql query
 const GET_ABOUTS = gql`
@@ -17,19 +19,7 @@ const GET_ABOUTS = gql`
   }
 `;
 
-const GET_JOBS = gql`
-  query MyQuery {
-    experiences {
-      school
-      stage
-      title
-      time
-      about {
-        text
-      }
-    }
-  }
-`;
+
 
 const GET_SONGS = gql`
   query MyQuery {
@@ -57,7 +47,7 @@ export default function AboutPage() {
   const { loading, error, data } = useQuery(GET_ABOUTS);
   const { error: errorSongs, data: dataSongs } = useQuery(GET_SONGS);
   const { error: errorSkills, data: dataSkills } = useQuery(GET_SKILLS);
-  const { error: errorJobs, data: dataJobs } = useQuery(GET_JOBS);
+
   const [weatherForecast, setWeatherForecast] = React.useState(null);
 
   useEffect(() => {
@@ -127,12 +117,10 @@ export default function AboutPage() {
         ))}
 
       <section className="max-w-[70rem] mx-auto m-[3rem]">
-        <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
-          Skills
-        </h2>
+        <Title title="Skills" />
         {sortedSkills.map((skill) => (
           <div
-            className={`bg-standard-spotify flex items-center rounded-[10rem] h-[5rem] max-w-[${skill.percentage}] w-full mt-[2rem]`}
+            className={`bg-standard-spotify flex items-center rounded-[10rem] h-[5rem] w-[${skill.percentage}] mt-[2rem]`}
             key={skill.title}
           >
             <div className="flex gap-[2rem] ml-[3rem] text-standard-white">
@@ -142,70 +130,11 @@ export default function AboutPage() {
           </div>
         ))}
       </section>
-
-      <section className="max-w-[70rem] mx-auto m-[3rem]">
-        {dataJobs &&
-        dataJobs.experiences &&
-        dataJobs.experiences.length > 0 &&
-        dataJobs.experiences.some((experience) => experience.school) ? (
-          <div>
-            <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
-              School
-            </h2>
-            <div className="bg-standard-blur rounded-[2rem] p-[4rem] mt-[2rem] opacity-65 flex flex-wrap md:flex-nowrap">
-              {dataJobs.experiences.map((experience) =>
-                experience.school ? (
-                  <div
-                    className={`rounded-[10rem] w-[50%] flex flex-wrap w-full mt-[2rem]`}
-                    key={experience.title}
-                  >
-                    <div className="ml-[3rem]  mb-[3rem] w-[70%] text-standard-spotify">
-                      <p className="text-[3rem] opacity-50 mb-[2rem]">
-                        {experience.time}
-                      </p>
-                      <p className="opacity-100 font-semibold mb-[1rem] text-[2rem]">
-                        {experience.title}
-                      </p>
-                      <p className="opacity-100">{experience.about.text}</p>
-                    </div>
-                  </div>
-                ) : null
-              )}
-            </div>
-          </div>
-        ) : null}
-
-        {dataJobs &&
-        dataJobs.experiences &&
-        dataJobs.experiences.length > 0 &&
-        dataJobs.experiences.some((experience) => experience.school) ? (
-          <div className="mx-auto">
-            <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold mt-[3rem] text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
-              Jobs
-            </h2>
-            <div className="bg-standard-blur mx-auto  w-full rounded-[2rem] grid grid-cols-1 p-[4rem] mt-[2rem] opacity-65">
-              {dataJobs.experiences.map((experience) =>
-                !experience.school ? (
-                  <div
-                    className="rounded-[10rem] w-full w-[50%] mt-[2rem]"
-                    key={experience.title}
-                  >
-                    <div className="ml-[3rem] mb-[3rem] w-full md:w-[70%] text-standard-spotify">
-                      <p className="text-[3rem] opacity-50 mb-[2rem]">
-                        {experience.time}
-                      </p>
-                      <p className="opacity-100 font-semibold mb-[1rem] text-[2rem]">
-                        {experience.title}
-                      </p>
-                      <p className="opacity-100">{experience.about.text}</p>
-                    </div>
-                  </div>
-                ) : null
-              )}
-            </div>
-          </div>
-        ) : null}
+      
+      <section>
+        <ExperienceCard />
       </section>
+
     </>
   );
 }
