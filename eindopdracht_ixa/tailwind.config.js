@@ -61,6 +61,7 @@ module.exports = {
 
       standard:{
         white: '#FFFFFF',
+        spotify: '#282828',
         brokenWhite: '#F6F6F6',
         black: '#000000',
         grey: '#364442',

@@ -25,9 +25,12 @@ export default function ProjectsPage() {
 
   return (
     <>
+     <h1 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[108px] max-w-full w-[63rem] mx-auto">
+        Projects
+    </h1>
       {loading && <p>Loading...</p>}
       {data && data.projects && data.projects.length > 0 && (
-        <ul className="projects w-full flex flex-wrap justify-around mt-[4rem]">
+        <ul className="max-w-[80rem] mx-auto projects w-full flex flex-wrap justify-around mt-[4rem]">
           {data.projects.map((project, index) => (
             <li
               className="mb-[2rem] bg-orange-400 rounded-[3rem]"
@@ -69,3 +72,5 @@ export default function ProjectsPage() {
     </>
   );
 }
+
+

@@ -43,7 +43,7 @@ export default function HomePage() {
     <>
       {loading && <p>Loading...</p>}
       {dataHome && dataHome.homes && dataHome.homes.length > 0 && (
-        <section>
+        <section className="max-w-[80rem] mx-auto">
           {dataHome.homes.map((home) => (
             <div className="flex flex-col p-[2rem] mb-[2rem]" key={home.id}>
               <h1 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[108px] max-w-full w-[63rem] mx-auto">
@@ -56,7 +56,7 @@ export default function HomePage() {
           ))}
         </section>
       )}
-      <section>
+      <section className="max-w-[80rem] mx-auto">
         <div className="flex flex-col p-[2rem] mb-[2rem]">
           <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
             In progress

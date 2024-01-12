@@ -24,6 +24,9 @@ const GET_JOBS = gql`
       stage
       title
       time
+      about {
+        text
+      }
     }
   }
 `;
@@ -77,7 +80,7 @@ export default function AboutPage() {
         data.abouts &&
         data.abouts.length > 0 &&
         data.abouts.map((about) => (
-          <section key={about.title}>
+          <section className="max-w-[80rem] mx-auto" key={about.title}>
             <h1 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[108px] max-w-full w-[63rem] mx-auto">
               {about.title}
             </h1>
@@ -88,49 +91,16 @@ export default function AboutPage() {
                   src={about.aboutImage.url}
                   alt={about.title}
                 />
-                {dataSongs &&
-                  dataSongs.songs &&
-                  dataSongs.songs.length > 0 &&
-                  dataSongs.songs.map((song) => (
-                    <a
-                      className="flex gap-5 bg-standard-grey lg:max-w-[20rem] w-full max-w-[80%] mx-auto items-center  p-3"
-                      target="_blank"
-                      href={`https://open.spotify.com/${song.slug}`}
-                      rel="noreferrer"
-                    >
-                      <div>
-                        <svg
-                          height="50px"
-                          width="50px"
-                          viewBox="0 0 48 48"
-                          fill="#000000"
-                        >
-                          <g
-                            id="Icons"
-                            stroke="none"
-                            strokeWidth="1"
-                            fill="none"
-                            fillRule="evenodd"
-                          >
-                            <g
-                              id="Color-"
-                              transform="translate(-200.000000, -460.000000)"
-                              fill="#F8EBD5"
-                            >
-                              <path
-                                d="M238.16,481.36 C230.48,476.8 217.64,476.32 210.32,478.6 C209.12,478.96 207.92,478.24 207.56,477.16 C207.2,475.96 207.92,474.76 209,474.4 C217.52,471.88 231.56,472.36 240.44,477.64 C241.52,478.24 241.88,479.68 241.28,480.76 C240.68,481.6 239.24,481.96 238.16,481.36 M237.92,488.08 C237.32,488.92 236.24,489.28 235.4,488.68 C228.92,484.72 219.08,483.52 211.52,485.92 C210.56,486.16 209.48,485.68 209.24,484.72 C209,483.76 209.48,482.68 210.44,482.44 C219.2,479.8 230,481.12 237.44,485.68 C238.16,486.04 238.52,487.24 237.92,488.08 M235.04,494.68 C234.56,495.4 233.72,495.64 233,495.16 C227.36,491.68 220.28,490.96 211.88,492.88 C211.04,493.12 210.32,492.52 210.08,491.8 C209.84,490.96 210.44,490.24 211.16,490 C220.28,487.96 228.2,488.8 234.44,492.64 C235.28,493 235.4,493.96 235.04,494.68 M224,460 C210.8,460 200,470.8 200,484 C200,497.2 210.8,508 224,508 C237.2,508 248,497.2 248,484 C248,470.8 237.32,460 224,460"
-                                id="Spotify"
-                              ></path>
-                            </g>
-                          </g>
-                        </svg>
-                      </div>
-                      <div className=" text-standard-beige">
-                        <div>{song.songTitle}</div>
-                        <div className="opacity-[60%]">{song.artist}</div>
-                      </div>
-                    </a>
-                  ))}
+                <iframe
+                  className="lg:max-w-[20rem] w-full max-w-[80%] mx-auto h-[80px] bg-standard-spotify rounded-none"
+                  src="https://open.spotify.com/embed/playlist/6Hnf9VRjPgxZaE51WqQzBb?utm_source=generator&theme=0"
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
               </div>
               <div className="max-w-full w-[40rem]">
                 <p className="text-standard-beige sm:text-[25px] mt-[2rem] font-bold lg:text-[50px] mx-auto">
@@ -156,13 +126,13 @@ export default function AboutPage() {
           </section>
         ))}
 
-      <section className="m-[3rem]">
+      <section className="max-w-[70rem] mx-auto m-[3rem]">
         <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
           Skills
         </h2>
         {sortedSkills.map((skill) => (
           <div
-            className={`bg-standard-grey flex items-center rounded-[10rem] h-[5rem] max-w-[${skill.percentage}] w-full mt-[2rem]`}
+            className={`bg-standard-spotify flex items-center rounded-[10rem] h-[5rem] max-w-[${skill.percentage}] w-full mt-[2rem]`}
             key={skill.title}
           >
             <div className="flex gap-[2rem] ml-[3rem] text-standard-white">
@@ -173,60 +143,69 @@ export default function AboutPage() {
         ))}
       </section>
 
-      <section className="m-[3rem]">
+      <section className="max-w-[70rem] mx-auto m-[3rem]">
         {dataJobs &&
-          dataJobs.experiences &&
-          dataJobs.experiences.length > 0 &&
-          dataJobs.experiences.some((experience) => experience.school) ? (
+        dataJobs.experiences &&
+        dataJobs.experiences.length > 0 &&
+        dataJobs.experiences.some((experience) => experience.school) ? (
           <div>
             <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
               School
             </h2>
-            {dataJobs.experiences.map((experience) =>
-              experience.school ? (
-                <div
-                  className={`bg-standard-grey flex items-center rounded-[10rem] h-[5rem] w-full mt-[2rem]`}
-                  key={experience.title}
-                >
-                  <div className="flex gap-[2rem] ml-[3rem] text-standard-white">
-                    <p>{experience.title}</p>
-                    <p>{experience.time}</p>
+            <div className="bg-standard-blur rounded-[2rem] p-[4rem] mt-[2rem] opacity-65 flex flex-wrap md:flex-nowrap">
+              {dataJobs.experiences.map((experience) =>
+                experience.school ? (
+                  <div
+                    className={`rounded-[10rem] w-[50%] flex flex-wrap w-full mt-[2rem]`}
+                    key={experience.title}
+                  >
+                    <div className="ml-[3rem]  mb-[3rem] w-[70%] text-standard-spotify">
+                      <p className="text-[3rem] opacity-50 mb-[2rem]">
+                        {experience.time}
+                      </p>
+                      <p className="opacity-100 font-semibold mb-[1rem] text-[2rem]">
+                        {experience.title}
+                      </p>
+                      <p className="opacity-100">{experience.about.text}</p>
+                    </div>
                   </div>
-                </div>
-              ) : null
-            )}
+                ) : null
+              )}
+            </div>
           </div>
         ) : null}
 
-
-
-
-      {dataJobs &&
-          dataJobs.experiences &&
-          dataJobs.experiences.length > 0 &&
-          dataJobs.experiences.some((experience) => experience.school) ? (
-          <div>
-            <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
+        {dataJobs &&
+        dataJobs.experiences &&
+        dataJobs.experiences.length > 0 &&
+        dataJobs.experiences.some((experience) => experience.school) ? (
+          <div className="mx-auto">
+            <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold mt-[3rem] text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
               Jobs
             </h2>
-            {dataJobs.experiences.map((experience) =>
-              !experience.school ? (
-                <div
-                  className={`bg-standard-grey flex items-center rounded-[10rem] h-[5rem] w-full mt-[2rem]`}
-                  key={experience.title}
-                >
-                  <div className="flex gap-[2rem] ml-[3rem] text-standard-white">
-                    <p>{experience.title}</p>
-                    <p>{experience.time}</p>
+            <div className="bg-standard-blur mx-auto  w-full rounded-[2rem] grid grid-cols-1 p-[4rem] mt-[2rem] opacity-65">
+              {dataJobs.experiences.map((experience) =>
+                !experience.school ? (
+                  <div
+                    className="rounded-[10rem] w-full w-[50%] mt-[2rem]"
+                    key={experience.title}
+                  >
+                    <div className="ml-[3rem] mb-[3rem] w-full md:w-[70%] text-standard-spotify">
+                      <p className="text-[3rem] opacity-50 mb-[2rem]">
+                        {experience.time}
+                      </p>
+                      <p className="opacity-100 font-semibold mb-[1rem] text-[2rem]">
+                        {experience.title}
+                      </p>
+                      <p className="opacity-100">{experience.about.text}</p>
+                    </div>
                   </div>
-                </div>
-              ) : null
-            )}
+                ) : null
+              )}
+            </div>
           </div>
         ) : null}
       </section>
-
-
     </>
   );
 }
