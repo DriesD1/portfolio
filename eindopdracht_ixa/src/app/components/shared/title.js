@@ -1,6 +1,9 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Title({ title = "Hello World" }) {
   const containerRef = useRef(null);
@@ -8,16 +11,14 @@ export default function Title({ title = "Hello World" }) {
 
   useGSAP(
     () => {
-      gsap.set(titleRef.current, { opacity: 0, y: 200 });
+      gsap.set(titleRef.current, { opacity: 0, x: -100 });
       gsap.to(titleRef.current, {
         opacity: 1,
-        y: 0,
+        x: 0,
         duration: 1,
         scrollTrigger: {
           trigger: titleRef.current,
-          start: "top 80%",
-          end: "bottom 100%",
-          toggleActions: "restart none restart none",
+          start: "20% 80%",
         },
       });
     },
@@ -25,11 +26,12 @@ export default function Title({ title = "Hello World" }) {
       scope: containerRef,
     }
   );
+
   return (
     <div ref={containerRef}>
       <h2
         ref={titleRef}
-        className="text-standard-brokenWhite fade-up sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto"
+        className="text-standard-brokenWhite fade-up mt-[2rem] sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto"
       >
         {title}
       </h2>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Title } from "../components/shared";
 import { ExperienceCard } from "../components/experiences";
+import { Skills } from "../components/skills";
 
 // graphql query
 const GET_ABOUTS = gql`
@@ -19,8 +19,6 @@ const GET_ABOUTS = gql`
   }
 `;
 
-
-
 const GET_SONGS = gql`
   query MyQuery {
     songs {
@@ -31,22 +29,12 @@ const GET_SONGS = gql`
   }
 `;
 
-const GET_SKILLS = gql`
-  query MyQuery {
-    skills {
-      percentage: percentage
-      title
-    }
-  }
-`;
-
 const URL_API_FORECAST =
   "https://api.weatherapi.com/v1/forecast.json?key=2e2178263a8b4e3ebb2142406221512&q=ghent&days=7";
 
 export default function AboutPage() {
   const { loading, error, data } = useQuery(GET_ABOUTS);
   const { error: errorSongs, data: dataSongs } = useQuery(GET_SONGS);
-  const { error: errorSkills, data: dataSkills } = useQuery(GET_SKILLS);
 
   const [weatherForecast, setWeatherForecast] = React.useState(null);
 
@@ -55,13 +43,6 @@ export default function AboutPage() {
       .then((response) => response.json())
       .then((weatherData) => setWeatherForecast(weatherData));
   }, []);
-
-  const sortedSkills =
-    dataSkills && dataSkills.skills
-      ? dataSkills.skills
-          .slice()
-          .sort((a, b) => parseFloat(b.percentage) - parseFloat(a.percentage))
-      : [];
 
   return (
     <>
@@ -116,25 +97,17 @@ export default function AboutPage() {
           </section>
         ))}
 
-      <section className="max-w-[70rem] mx-auto m-[3rem]">
-        <Title title="Skills" />
-        {sortedSkills.map((skill) => (
-          <div
-            className={`bg-standard-spotify flex items-center rounded-[10rem] h-[5rem] w-[${skill.percentage}] mt-[2rem]`}
-            key={skill.title}
-          >
-            <div className="flex gap-[2rem] ml-[3rem] text-standard-white">
-              <p>{skill.title}</p>
-              <p>{skill.percentage}</p>
-            </div>
-          </div>
-        ))}
-      </section>
-      
       <section>
-        <ExperienceCard />
+        {!loading && <Skills />}
       </section>
 
+      <section>
+        {!loading && <ExperienceCard />}
+      </section>
+
+      https://www.facebook.com/profile.phpid100009107534019
+      https://www.instagram.com/dries_dhondt/
+      https://www.instagram.com/dries_dhondt/
     </>
   );
 }
