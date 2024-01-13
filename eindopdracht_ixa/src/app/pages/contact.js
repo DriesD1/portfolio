@@ -39,28 +39,35 @@ export default function ContactPage() {
             </h1>
           </div>
 
-          <div className="max-w-[70rem] ml-[1rem] mr-[] w-full mx-auto">
+          <div className="max-w-[70rem] ml-[1rem] mr-[1rem] flex items-center w-full mx-auto">
             <div>
               <div className="text-standard-beige">
                 <p className="max-w-[30rem] text-[1.3rem] lg:text-[2rem] lg:mr-[3rem] mt-[5rem] rounded-t-[10rem] w-full object-cover object-top">
-                  Have questions or feedback? We're here to help! Feel free to
+                  Have questions or feedback? I'm here to help! Feel free to
                   reach out to me.
                 </p>
               </div>
 
               {data.contacts.map((contact, index) => (
                 <div className=" text-standard-white" key={index}>
-                    <div class="contact-container">
+                  <div class="contact-container">
                     <div class="text-[1rem] lg:text-[1.3rem] mt-[3rem] flex gap-[1rem] items-center flex gap-1">
-                        <p>EMAIL:</p>
-                        <a href="mailto:dries2003@outlook.be" class="contact-link">dries2003@outlook.be</a>
+                      <p>EMAIL:</p>
+                      <a
+                        href="mailto:dries2003@outlook.be"
+                        class="contact-link"
+                      >
+                        dries2003@outlook.be
+                      </a>
                     </div>
                     <div class="text-[1rem] lg:text-[1.3rem] mb-[1rem] flex gap-[1rem] items-center flex gap-1 mt-1 mb-2">
-                        <p>TEL:</p>
-                        <a href="tel:0460977801" class="contact-link">0460977801</a>
+                      <p>TEL:</p>
+                      <a href="tel:0460977801" class="contact-link">
+                        0460977801
+                      </a>
                     </div>
-                    </div>
-                                    {contact.instagram && (
+                  </div>
+                  {contact.instagram && (
                     <div className="flex mb-[3rem] gap-[1rem]">
                       <a
                         href={contact.instagram.url}
@@ -116,9 +123,51 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div>
+            <div className="min-h-screen flex items-center max-w-[40rem] justify-center">
+  <form className="p-8 w-full rounded">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mb-4 flex flex-col">
+        <input
+          placeholder="Your Name"
+          type="text"
+          id="name"
+          name="name"
+          className="p-2 w-full rounded-[10rem]"
+        />
+      </div>
 
-            </div>
+      <div className="mb-4 flex flex-col">
+        <input
+          placeholder="Your Email"
+          type="email"
+          id="email"
+          name="email"
+          className="p-2 w-full rounded-[10rem]"
+        />
+      </div>
+    </div>
+
+    <div className="mb-6">
+      <textarea
+        placeholder="Your Message"
+        id="message"
+        name="message"
+        rows="4"
+        className="mt-1 p-2 w-full rounded-md resize-none"
+      />
+    </div>
+
+    <button
+      type="submit"
+      className="bg-green-500 text-standard-white font-semibold py-2 px-4 rounded hover:bg-standard-spotify focus:outline-none focus:shadow-outline-standard-spotify active:bg-standard-spotify"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
+
+
           </div>
         </section>
       )}
