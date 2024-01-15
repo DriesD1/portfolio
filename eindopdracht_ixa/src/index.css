@@ -116,8 +116,18 @@
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s;
+  background-color: #ffffff00;
 }
 
 .contact-link:hover::before {
   transform: scaleX(1);
+}
+
+.form-contact input::placeholder {
+  color: #fff;
+}
+
+
+.form-contact textarea::placeholder {
+  color: #fff;
 }

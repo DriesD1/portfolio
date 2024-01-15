@@ -67,6 +67,7 @@ module.exports = {
         grey: '#364442',
         beige: '#F8EBD5',
         blur: '#f4f3f0cc',
+        transparent: '#ffffff00',
       },
     },
   },

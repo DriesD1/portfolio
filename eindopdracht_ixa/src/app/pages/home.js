@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../routes";
+import { RapierWorldDragon } from "../components/animation/web/dragon.tsx";
 
 // graphql query
 const GET_PROJECTS = gql`
@@ -29,18 +30,19 @@ const GET_HOME = gql`
       id
     }
   }
-`;
-
-export default function HomePage() {
-  const { loading, error, data } = useQuery(GET_PROJECTS);
-  const {
-    loading: loadingHome,
-    error: errorHome,
-    data: dataHome,
-  } = useQuery(GET_HOME);
-
-  return (
-    <>
+  `;
+  
+  export default function HomePage() {
+    const { loading, error, data } = useQuery(GET_PROJECTS);
+    const {
+      loading: loadingHome,
+      error: errorHome,
+      data: dataHome,
+    } = useQuery(GET_HOME);
+    
+    return (
+      <>
+      <RapierWorldDragon /> 
       {loading && <p>Loading...</p>}
       {dataHome && dataHome.homes && dataHome.homes.length > 0 && (
         <section className="max-w-[80rem] mx-auto">

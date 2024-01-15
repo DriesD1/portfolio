@@ -50,19 +50,19 @@ export default function ContactPage() {
 
               {data.contacts.map((contact, index) => (
                 <div className=" text-standard-white" key={index}>
-                  <div class="contact-container">
-                    <div class="text-[1rem] lg:text-[1.3rem] mt-[3rem] flex gap-[1rem] items-center flex gap-1">
+                  <div className="contact-container">
+                    <div className="text-[1rem] lg:text-[1.3rem] mt-[3rem] flex gap-[1rem] items-center flex gap-1">
                       <p>EMAIL:</p>
                       <a
                         href="mailto:dries2003@outlook.be"
-                        class="contact-link"
+                        className="contact-link"
                       >
                         dries2003@outlook.be
                       </a>
                     </div>
-                    <div class="text-[1rem] lg:text-[1.3rem] mb-[1rem] flex gap-[1rem] items-center flex gap-1 mt-1 mb-2">
+                    <div className="text-[1rem] lg:text-[1.3rem] mb-[1rem] flex gap-[1rem] items-center flex gap-1 mt-1 mb-2">
                       <p>TEL:</p>
-                      <a href="tel:0460977801" class="contact-link">
+                      <a href="tel:0460977801" className="contact-link">
                         0460977801
                       </a>
                     </div>
@@ -124,50 +124,47 @@ export default function ContactPage() {
             </div>
 
             <div className="min-h-screen flex items-center max-w-[40rem] justify-center">
-  <form className="p-8 w-full rounded">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="mb-4 flex flex-col">
-        <input
-          placeholder="Your Name"
-          type="text"
-          id="name"
-          name="name"
-          className="p-2 w-full rounded-[10rem]"
-        />
-      </div>
+              <form className="p-8 w-full form-contact rounded">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="mb-4 flex flex-col">
+                    <input
+                      placeholder="Your Name"
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="p-2 w-full bg-standard-transparent border text-standard-white border-solid border-standard-white focus:outline-none rounded-[10rem]"
+                    />
+                  </div>
 
-      <div className="mb-4 flex flex-col">
-        <input
-          placeholder="Your Email"
-          type="email"
-          id="email"
-          name="email"
-          className="p-2 w-full rounded-[10rem]"
-        />
-      </div>
-    </div>
+                  <div className="mb-4 flex flex-col">
+                    <input
+                      placeholder="Your Email"
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="p-2 bg-standard-transparent text-standard-white w-full border border-solid border-standard-white focus:outline-none rounded-[10rem]"
+                    />
+                  </div>
+                </div>
 
-    <div className="mb-6">
-      <textarea
-        placeholder="Your Message"
-        id="message"
-        name="message"
-        rows="4"
-        className="mt-1 p-2 w-full rounded-md resize-none"
-      />
-    </div>
+                <div className="mb-6">
+                  <textarea
+                    placeholder="Your Message"
+                    id="message"
+                    name="message"
+                    rows="4"
+                    className="mt-1 bg-standard-transparent p-2 w-full  border text-standard-white border-solid border-standard-white focus:outline-none rounded-md resize-none"
+                  />
+                </div>
 
-    <button
-      type="submit"
-      className="bg-green-500 text-standard-white font-semibold py-2 px-4 rounded hover:bg-standard-spotify focus:outline-none focus:shadow-outline-standard-spotify active:bg-standard-spotify"
-    >
-      Submit
-    </button>
-  </form>
-</div>
-
-
-
+                <button
+                  type="submit"
+                  className="bg-green-500 text-standard-white font-semibold py-2 px-4 rounded hover:bg-standard-spotify focus:outline-none focus:shadow-outline-standard-spotify active:bg-standard-spotify"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
         </section>
       )}
