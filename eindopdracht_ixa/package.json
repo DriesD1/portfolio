@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.8.8",
+    "@dotlottie/player-component": "^2.7.5",
     "@fontsource-variable/inter": "^5.0.16",
     "@fontsource/dm-serif-text": "^5.0.18",
     "@gsap/react": "^2.0.2",
@@ -14,8 +15,10 @@
     "@testing-library/user-event": "^13.5.0",
     "graphql": "^16.8.1",
     "gsap": "^3.12.4",
+    "lottie-web": "^5.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.4",
     "react-router-dom": "^6.21.1",
     "react-scripts": "^5.0.1",
     "react-three-fiber": "^6.0.13",

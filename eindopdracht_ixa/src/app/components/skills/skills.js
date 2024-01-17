@@ -21,8 +21,8 @@ export default function Skills() {
     const containerRef = useRef(null);
     const skillRef = useRef(null);
   
-    const { error: errorSkills, data: dataSkills } = useQuery(GET_SKILLS);
-  
+    const { error: errorSkills, loading: loadingSkills, data: dataSkills } = useQuery(GET_SKILLS);
+
     const sortedSkills =
       dataSkills && dataSkills.skills
         ? dataSkills.skills
@@ -49,6 +49,8 @@ export default function Skills() {
         });   
   
     return (
+    <>
+      {loadingSkills && <p>Loading...</p>}
       <div>
         <section className="max-w-[70rem] mx-auto m-[3rem]">
           <Title title="Skills" />
@@ -61,5 +63,6 @@ export default function Skills() {
           </div>
         </section>
       </div>
+    </>
     );
 }

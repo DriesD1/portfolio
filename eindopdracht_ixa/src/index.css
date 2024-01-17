@@ -116,7 +116,7 @@
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s;
-  background-color: #ffffff00;
+  background-color: white;
 }
 
 .contact-link:hover::before {
@@ -127,7 +127,21 @@
   color: #fff;
 }
 
-
 .form-contact textarea::placeholder {
   color: #fff;
+}
+
+::selection {
+  color: red;
+  background: yellow;
+}
+
+::-moz-selection {
+  color: red;
+  background: yellow;
+}
+
+::-webkit-selection {
+  color: red;
+  background: yellow;
 }

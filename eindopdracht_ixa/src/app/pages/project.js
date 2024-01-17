@@ -1,21 +1,48 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
 
-import projects from "../data/project.json";
+const GET_PROJECT = gql`
+  query GetProject($projectId: ID!) {
+    project(where: { id: $projectId }) {
+      id
+      slug
+      title
+      skills {
+        skillPhoto {
+          url
+        }
+        title
+      }
+      projectPhoto {
+        url
+      }
+    }
+  }
+`;
+
+console.log(GET_PROJECT);
 
 export default function ProjectPage() {
-    const routeParams = useParams();
-    const projectId = routeParams.id;
+  const { id } = useParams();
+  const projectId = id;
 
-    const [project, setProject] = useState(projects.find(project => project.id == projectId));
-    return (
-        <>
-            {project && (
-                <article>
-                    <h2>{project.title}</h2>
-                    <p>{project.slug}</p>
-                </article>
-            )}
-        </>
-    );
+  const { loading, error, data } = useQuery(GET_PROJECT, {
+    variables: { projectId },
+  });
+
+  const [project, setProject] = useState(null);
+
+  return (
+    <>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      {data && data.project && (
+        <article>
+          <h2>{data.title}</h2>
+          <p>{data.slug}</p>
+        </article>
+      )}
+    </>
+  );
 }

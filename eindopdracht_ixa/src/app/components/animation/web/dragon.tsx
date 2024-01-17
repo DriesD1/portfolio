@@ -1,19 +1,33 @@
 import { useGLTF } from "@react-three/drei";
 import dragon from "../assets/dragon-animate.glb";
-import React from "react";
-import { Canvas } from "react-three-fiber";
+import React, { useEffect, useMemo, useRef } from "react";
+import { useFrame } from "react-three-fiber";
+import { AnimationMixer } from "three";
 
+export default function RapierWorldDragon() {
+  const { animations, scene }: any = useGLTF(dragon, true);
+  const animationClip = animations[0];
+  const animationMixer = useMemo(() => new AnimationMixer(scene), [scene]);
 
+  useEffect(() => {
+    const animationAction = animationMixer.clipAction(animationClip);
+    animationAction.play();
 
-export const RapierWorldDragon = () => {
-  const { scene }: any = useGLTF(dragon, true);
+    // Cleanup function
+    return () => {
+      animationAction.stop();
+    };
+  }, [animationClip, animationMixer]);
+
+  useFrame((state, delta) => {
+    animationMixer.update(delta);
+  });
+
   return (
-    <Canvas>
-    <group scale={1.5}>
-        <primitive  scale={0.5} object={scene} />
-        <ambientLight intensity={2} />
-        <pointLight />
+    <group position={[0, 0, -1]} rotation={[0, 2 * Math.PI * (-150 / 360), 0]} scale={0.5}>
+      <primitive object={scene} />
+      <ambientLight intensity={2} />
+      <pointLight />
     </group>
-    </Canvas>
   );
-};
+}

@@ -2,14 +2,14 @@
 import { Route, Routes } from 'react-router-dom';
 
 // import styles
-import { Header } from "./components/layouts";
+import { Footer, Header } from "./components/layouts";
 import { ROUTES } from './routes';
 import { HygraphProvidor } from './services';
 
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-
 // import fonts
+
 import '@fontsource-variable/inter';
 import '@fontsource/dm-serif-text';
 import { AboutPage, ContactPage, HomePage, ProjectPage, ProjectsPage } from './pages';
@@ -36,6 +36,7 @@ function App() {
           <Route path={ROUTES.NOT_FOUND} element={<h1>404</h1>} />
         </Routes>
       </main>
+      <Footer />
     </div>
     </HygraphProvidor>
   );
