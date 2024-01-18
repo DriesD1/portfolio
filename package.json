@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "/eindopdracht-DriesD1",
+  "proxy": "https://pgmgent-2324-ixr.github.io", 
   "dependencies": {
     "@apollo/client": "^3.8.8",
     "@dotlottie/player-component": "^2.7.5",
