@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/eindopdracht-DriesD1/static/css/main.40fb092a.css",
+    "main.js": "/eindopdracht-DriesD1/static/js/main.77df59a5.js",
+    "static/js/787.e77355fb.chunk.js": "/eindopdracht-DriesD1/static/js/787.e77355fb.chunk.js",
+    "static/media/dragon-animate.glb": "/eindopdracht-DriesD1/static/media/dragon-animate.65025d59f95fcb81ee10.glb",
+    "static/media/inter-latin-ext-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-latin-ext-wght-normal.fbd6dc6ea3a2a849b6fc.woff2",
+    "static/media/inter-latin-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-latin-wght-normal.e62404dc3261fb537f3a.woff2",
+    "static/media/inter-cyrillic-ext-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-cyrillic-ext-wght-normal.92dcb004dd66a14761da.woff2",
+    "static/media/dm-serif-text-latin-400-normal.woff2": "/eindopdracht-DriesD1/static/media/dm-serif-text-latin-400-normal.3c48096736649d191b73.woff2",
+    "static/media/inter-greek-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-greek-wght-normal.8cf014c12c3518f736ab.woff2",
+    "static/media/dm-serif-text-latin-400-normal.woff": "/eindopdracht-DriesD1/static/media/dm-serif-text-latin-400-normal.ca397cbcc01448a0d23f.woff",
+    "static/media/inter-cyrillic-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-cyrillic-wght-normal.dd1eb0afa10711830d27.woff2",
+    "static/media/inter-greek-ext-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-greek-ext-wght-normal.f8ed8c6b512a482bd1ae.woff2",
+    "static/media/dm-serif-text-latin-ext-400-normal.woff2": "/eindopdracht-DriesD1/static/media/dm-serif-text-latin-ext-400-normal.491997784ab3b0d0fe26.woff2",
+    "static/media/inter-vietnamese-wght-normal.woff2": "/eindopdracht-DriesD1/static/media/inter-vietnamese-wght-normal.03627a8b5fe27d055e5c.woff2",
+    "static/media/dm-serif-text-latin-ext-400-normal.woff": "/eindopdracht-DriesD1/static/media/dm-serif-text-latin-ext-400-normal.3398923e272fa1318b2d.woff",
+    "index.html": "/eindopdracht-DriesD1/index.html",
+    "main.40fb092a.css.map": "/eindopdracht-DriesD1/static/css/main.40fb092a.css.map",
+    "main.77df59a5.js.map": "/eindopdracht-DriesD1/static/js/main.77df59a5.js.map",
+    "787.e77355fb.chunk.js.map": "/eindopdracht-DriesD1/static/js/787.e77355fb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.40fb092a.css",
+    "static/js/main.77df59a5.js"
+  ]
+}
