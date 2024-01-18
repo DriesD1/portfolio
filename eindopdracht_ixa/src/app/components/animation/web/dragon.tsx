@@ -24,7 +24,7 @@ export default function RapierWorldDragon() {
   });
 
   return (
-    <group position={[0, 0, -1]} rotation={[0, 2 * Math.PI * (-150 / 360), 0]} scale={0.5}>
+    <group position={[0, 0, -4]} rotation={[0, 2 * Math.PI * (-150 / 360), 0]} scale={.5}>
       <primitive object={scene} />
       <ambientLight intensity={2} />
       <pointLight />

@@ -60,6 +60,16 @@
   }
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  overflow-x: hidden;
+}
+
 
 .projects li {
   transition: transform 0.3s ease-in-out;
@@ -91,6 +101,10 @@
 }
 
 .projects .in-progress:nth-child(even) {
+  align-self: flex-start;
+  margin-top: 10rem;
+}
+.projects .in-progress:nth-child(odd) {
   align-self: flex-end;
   margin-top: 10rem;
 }
@@ -132,16 +146,16 @@
 }
 
 ::selection {
-  color: red;
-  background: yellow;
+  color: purple;
+  background: lightblue;
 }
 
 ::-moz-selection {
-  color: red;
-  background: yellow;
+  color: purple;
+  background: lightblue;
 }
 
 ::-webkit-selection {
-  color: red;
-  background: yellow;
+  color: purple;
+  background: lightblue;
 }

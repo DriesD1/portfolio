@@ -26,14 +26,14 @@ export default function InProgress() {
 
   return (
     <>
-      <section className="max-w-[80rem] mx-auto">
+      <section className="overflow-x-hidden max-w-[80rem] mx-auto">
         <div className="flex flex-col p-[2rem] mb-[2rem]">
           <h2 className="text-standard-brokenWhite sm:text-[58px] font-bold text-center lg:text-[60px] max-w-full w-[63rem] mx-auto">
             In progress
           </h2>
         </div>
         <div className="flex flex-col gap-[2rem]">
-          <div className="absolute w-full">
+          <div className="absolute  w-full">
             <CanvasSelector />
           </div>
           {data && data.projects && data.projects.length > 0 && (
@@ -43,7 +43,7 @@ export default function InProgress() {
                   // Check if the project is in progress
                   project.inProgress && (
                     <li
-                      className="mb-[2rem] in-progress w-fit bg-lightBlue-400 rounded-[3rem]"
+                      className="mb-[2rem] z-50 in-progress w-fit bg-lightBlue-400 rounded-[3rem]"
                       key={project.id}
                     >
                       <Link

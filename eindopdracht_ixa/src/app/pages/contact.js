@@ -2,7 +2,7 @@
 import { Links } from "../components/contacts";
 import { FormContact } from "../components/forms";
 import { ContactTitle } from "../components/shared";
-import { DesContact } from "../components/description";
+import { DesContact } from "../components/descriptions";
 
 
 export default function ContactPage() {
