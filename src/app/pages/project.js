@@ -65,7 +65,7 @@ export default function ProjectPage() {
                         <img
                           src={skill.skillPhoto.url}
                           alt={skill.title}
-                          className="w-6 h-6 rounded-full"
+                          className="w-6 h-6"
                         />
                       )}
                       <span>{skill.title}</span>

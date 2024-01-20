@@ -13,6 +13,8 @@ import { useRef } from "react";
 import '@fontsource-variable/inter';
 import '@fontsource/dm-serif-text';
 import { AboutPage, ContactPage, HomePage, ProjectPage, ProjectsPage } from './pages';
+import BlogsPage from './pages/blogs';
+import BlogPage from './pages/blog';
 // import components
 
 
@@ -32,6 +34,10 @@ function App() {
           <Route path={ROUTES.PROJECTS}>
             <Route index element={<ProjectsPage/>} />
             <Route path={ROUTES.PROJECT} element={<ProjectPage/>} />
+          </Route>
+          <Route path={ROUTES.BLOGS}>
+            <Route index element={<BlogsPage/>} />
+            <Route path={ROUTES.BLOG} element={<BlogPage/>} />
           </Route>
           <Route path={ROUTES.NOT_FOUND} element={<h1>404</h1>} />
         </Routes>
