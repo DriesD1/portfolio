@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Spotify } from "../shared";
 
 // graphql query
 const GET_ABOUTS = gql`
@@ -32,7 +33,6 @@ export default function HeroAbout() {
       .then((weatherData) => setWeatherForecast(weatherData));
   }, []);
 
-
   return (
     <>
       {loading && <p>Loading...</p>}
@@ -51,16 +51,7 @@ export default function HeroAbout() {
                   src={about.aboutImage.url}
                   alt={about.title}
                 />
-                <iframe
-                  className="lg:max-w-[20rem] w-full max-w-[80%] mx-auto h-[80px] bg-standard-spotify rounded-none"
-                  src="https://open.spotify.com/embed/playlist/6Hnf9VRjPgxZaE51WqQzBb?utm_source=generator&theme=0"
-                  width="100%"
-                  height="352"
-                  frameBorder="0"
-                  allowfullscreen=""
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                ></iframe>
+                <Spotify />
               </div>
               <div className="max-w-full w-[40rem]">
                 <p className="text-standard-beige sm:text-[25px] mt-[2rem] font-bold lg:text-[50px] mx-auto">

@@ -18,11 +18,11 @@ export default function CanvasSelector() {
       gsap.to(canvasRef.current, {
         opacity: 1,
         duration: 1,
-        y: 800,
+        y: 400,
         scrollTrigger: {
           trigger: canvasRef.current,
-          start: "70% 60%",
-         end: "140% 20%",
+          start: "40% 50%",
+         end: "bottom bottom",
          scrub: 1.3,
          markers: true,
         },
