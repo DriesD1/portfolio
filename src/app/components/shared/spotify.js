@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 const Spotify = () => {
   const [nowPlaying, setNowPlaying] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-  const [refreshToken, setRefreshToken] = useState(null);
   const [fetchingToken, setFetchingToken] = useState(false);
 
   // Ensure that your environment variables are correctly set
@@ -13,19 +12,13 @@ const Spotify = () => {
     "https://api.spotify.com/v1/me/player/currently-playing";
   const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 
-  const getAccessToken = async (code = null) => {
+  const getAccessToken = async (code) => {
     setFetchingToken(true);
 
     const formData = new URLSearchParams();
-
-    if (code) {
-      formData.append("code", code);
-      formData.append("redirect_uri", "http://localhost:3000/about");
-      formData.append("grant_type", "authorization_code");
-    } else if (refreshToken) {
-      formData.append("refresh_token", refreshToken);
-      formData.append("grant_type", "refresh_token");
-    }
+    formData.append("code", code);
+    formData.append("redirect_uri", "http://localhost:3000/about");
+    formData.append("grant_type", "authorization_code");
 
     const authOptions = {
       method: "POST",
@@ -43,9 +36,6 @@ const Spotify = () => {
       if (response.ok) {
         localStorage.setItem("spotify_access_token", data.access_token);
         setAccessToken(data.access_token);
-        if (data.refresh_token) {
-          setRefreshToken(data.refresh_token);
-        }
       } else {
         console.error("Error refreshing/accessing token:", data.error);
       }
@@ -85,32 +75,25 @@ const Spotify = () => {
     const currentUrl = new URL(window.location.href);
     const code = currentUrl.searchParams.get("code");
 
-    if (code && !fetchingToken && !accessToken) {
+    if (code && !accessToken) {
       getAccessToken(code);
-    } else if (!accessToken && refreshToken && !fetchingToken) {
-      getAccessToken(); // Trigger token refresh if refreshToken is present
-    }
-
-    // If no access token and no ongoing token fetch, redirect to Spotify authorization
-    if (!accessToken && !fetchingToken) {
-      window.location.href = `https://accounts.spotify.com/authorize?response_type=code&redirect_uri=http://localhost:3000/about&scope=user-read-currently-playing&client_id=${client_id}`;
+    } else {
+      const storedToken = localStorage.getItem("spotify_access_token");
+      if (storedToken) {
+        setAccessToken(storedToken);
+      } else if (!code) {
+        window.location.href = `https://accounts.spotify.com/authorize?response_type=code&redirect_uri=http://localhost:3000/about&scope=user-read-currently-playing&client_id=${client_id}`;
+      }
     }
 
     const fetchData = async () => {
-      // Fetch now playing if access token is present
-      if (accessToken) {
-        await fetchNowPlaying();
-      }
-
-      // Set interval to fetch now playing at regular intervals
-      const interval = setInterval(fetchNowPlaying, 10000);
-
-      // Cleanup interval on component unmount
+      await fetchNowPlaying();
+      const interval = setInterval(fetchNowPlaying, 6000);
       return () => clearInterval(interval);
     };
 
     fetchData();
-  }, [accessToken, fetchingToken, refreshToken]);
+  }, [accessToken]);
 
   return (
     <div>
