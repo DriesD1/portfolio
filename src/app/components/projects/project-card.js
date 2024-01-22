@@ -29,7 +29,7 @@ export default function ProjectCards() {
         <ul className="max-w-[80rem] mx-auto projects w-full flex flex-wrap justify-around mt-[4rem]">
           {data.projects.map((project, index) => (
             <li
-              className="mb-[2rem] bg-orange-400 rounded-[3rem]"
+              className="mb-[2rem] bg-purple-800 rounded-[3rem]"
               key={project.id}
             >
               <Link
@@ -45,14 +45,14 @@ export default function ProjectCards() {
                       {project.skills.map((skill) => (
                         <span
                           key={skill.id}
-                          className="text-standard-grey text-end text-[10px]"
+                          className="text-standard-white text-end text-[10px]"
                         >
                           {skill.title}
                         </span>
                       ))}
                     </div>
                   )}
-                  <span className="text-standard-grey text-end text-4xl">
+                  <span className="text-standard-white text-end text-4xl">
                     {project.title}
                   </span>
                 </div>
