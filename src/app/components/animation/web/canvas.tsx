@@ -21,14 +21,13 @@ export default function CanvasSelector() {
       y: 400,
       scrollTrigger: {
         trigger: canvasRef.current,
-        start: "10% 10%",
-        end: "bottom top", // Updated to last for the full duration
+        start: "40% 40%",
+        end: "bottom 80%", // Updated to last for the full duration
         scrub: .3,
         onUpdate: (scrollTrigger) => {
           const progress = scrollTrigger.progress;
           updateScrollProgress(progress);
         },
-        markers: true,
       },
     });
   }, {

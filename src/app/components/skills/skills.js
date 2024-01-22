@@ -31,7 +31,6 @@ const animateSkills = (containerRef, dataSkills, loadingSkills) => {
           trigger: skillRef,
           start: "-20% 100%",
           end: "top 50%",
-          markers: true,
         },
       });
     });
