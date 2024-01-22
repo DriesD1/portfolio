@@ -1,4 +1,5 @@
 import { Links } from "../contacts";
+import Spotify from "../shared/spotify";
 import Navigation from "./navigation";
 
 export default function Footer () {
@@ -7,16 +8,7 @@ export default function Footer () {
       <section className="mt-[10rem] w-full max-w-[50rem] mb-[4rem] mx-auto">
         <div className="flex flex-wrap justify-between">
             <div>
-                <iframe
-                  className="lg:max-w-[30rem] mb-[2rem] w-full max-w-[80%] h-[80px]"
-                  src="https://open.spotify.com/embed/playlist/6Hnf9VRjPgxZaE51WqQzBb?utm_source=generator&theme=0"
-                  width="100%"
-                  height="352"
-                  frameBorder="0"
-                  allowfullscreen=""
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                ></iframe>
+                <Spotify containerClass="flex items-center gap-[2rem] text-standard-beige lg:max-w-[30rem] w-full max-w-[80%] mx-auto h-[80px] bg-standard-spotify rounded-full mb-8" />
                 <p className="text-standard-white text-normal lg:text-[1.3rem]">
                 © 2024 Dries Dhondt - All Rights Reserved
                 </p>

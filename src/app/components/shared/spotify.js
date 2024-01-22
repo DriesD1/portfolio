@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { ReactComponent as SpotifyLogo }  from "./assets/spotify.svg";
 
-const Spotify = () => {
+const Spotify = ({ containerClass }) => {
   const [nowPlaying, setNowPlaying] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [fetchingToken, setFetchingToken] = useState(false);
@@ -98,7 +99,7 @@ const Spotify = () => {
   return (
     <div>
       {nowPlaying && nowPlaying.item ? (
-        <div className="flex items-center gap-[2rem] text-standard-beige lg:max-w-[20rem] w-full max-w-[80%] mx-auto h-[80px] bg-standard-spotify rounded-none">
+        <div className={containerClass}>
           <div>
             <img
               className="music-img h-[60px] ml-2 rounded-[10rem]"
@@ -120,7 +121,17 @@ const Spotify = () => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div>
+          {fetchingToken ? "Loading..." : ""}
+          <div className={containerClass}>
+            <div className="ml-4">
+              <SpotifyLogo />
+            </div>
+            <div>
+              <p>Im not listening to music right now</p>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
