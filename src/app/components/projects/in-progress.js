@@ -2,6 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../routes/index.js";
 import CanvasSelector from "../animation/web/canvas.tsx";
+import { ScrollProvider } from "../animation/web/scroll-context.js";
 
 const GET_PROJECTS = gql`
   query GetProjects {
@@ -34,7 +35,9 @@ export default function InProgress() {
         </div>
         <div className="flex flex-col gap-[2rem]">
           <div className="absolute  w-full">
+          <ScrollProvider>
             <CanvasSelector />
+          </ScrollProvider>
           </div>
           {data && data.projects && data.projects.length > 0 && (
             <ul className="projects flex flex-col w-[full] ml-[2rem] mr-[2rem] mt-[4rem]">

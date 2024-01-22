@@ -1,12 +1,12 @@
+import React, { useRef } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Title } from "../shared";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger"; // Import ScrollTrigger
-import Skillbar from "./skillbar"; 
-import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Skillbar from "./skillbar";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
 const GET_SKILLS = gql`
   query MyQuery {
@@ -17,52 +17,58 @@ const GET_SKILLS = gql`
   }
 `;
 
-export default function Skills() {
-    const containerRef = useRef(null);
-    const skillRef = useRef(null);
-  
-    const { error: errorSkills, loading: loadingSkills, data: dataSkills } = useQuery(GET_SKILLS);
+const animateSkills = (containerRef, dataSkills, loadingSkills) => {
+  if (!loadingSkills && dataSkills) {
+    containerRef.current.childNodes.forEach((skillRef, index) => {
+      gsap.set(skillRef, { opacity: 0, x: -100 });
 
-    const sortedSkills =
-      dataSkills && dataSkills.skills
-        ? dataSkills.skills
-            .slice()
-            .sort((a, b) => parseFloat(b.percentage) - parseFloat(a.percentage))
-        : [];
+      gsap.to(skillRef, {
+        opacity: 1,
+        x: 0,
+        duration: .1,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: skillRef,
+          start: "-20% 100%",
+          end: "top 50%",
+          markers: true,
+        },
+      });
+    });
+  }
+};
 
-        useGSAP(() => {
-            gsap.set(skillRef.current, { opacity: 0, x: -100 });
-      
-                gsap.to(skillRef.current, {
-                    opacity: 1,
-                    x: 0,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: skillRef.current,
-                        start: "-20% 50%",
-                        end: "top 50%",
-                        markers: true,
-                    },
-                });
-        }, {
-            scope: containerRef,
-        });   
-  
-    return (
+const Skills = () => {
+  const containerRef = useRef(null);
+  const { error: errorSkills, loading: loadingSkills, data: dataSkills } = useQuery(GET_SKILLS);
+
+  const sortedSkills =
+    dataSkills && dataSkills.skills
+      ? dataSkills.skills.slice().sort((a, b) => parseFloat(b.percentage) - parseFloat(a.percentage))
+      : [];
+
+  useGSAP(() => animateSkills(containerRef, dataSkills, loadingSkills), [
+    loadingSkills,
+    dataSkills,
+  ], { scope: containerRef });
+
+  return (
     <>
-      {loadingSkills && <p>Loading...</p>}
+      {loadingSkills ? <p>Loading...</p> : null}
       <div>
         <section className="max-w-[70rem] mx-auto m-[3rem]">
           <Title title="Skills" />
           <div ref={containerRef}>
-          {sortedSkills.map((skill, index, skillRef) => (
-            <div ref={skillRef} >
-                <Skillbar skill={skill} key={skill.title} id={`skill-${index}`} />
-            </div>
-          ))}
+            {sortedSkills.map((skill, index) => (
+              <div key={skill.title}>
+                <Skillbar skill={skill} id={`skill-${index}`} />
+              </div>
+            ))}
           </div>
         </section>
       </div>
     </>
-    );
-}
+  );
+};
+
+export default Skills;
