@@ -1,82 +1,73 @@
 import { useEffect, useState } from "react";
 
-const CLIENT_ID = "your_client_id";
-const REDIRECT_URI = "http://localhost:3000/about";
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
-const API_BASE = "https://api.spotify.com/v1";
-const AUTH_SCOPE = "user-read-playback-state";
+const Spotify = () => {
+  const [nowPlaying, setNowPlaying] = useState(null);
 
+  const client_id = process.env.SPOTIFY_CLIENT_ID;
+  const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+  const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
-export default function Spotify() {
-    const [token, setToken] = useState(null);
-    const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
+  const basic = btoa(`${client_id}:${client_secret}`);
+  const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
+  const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
+
+  const getAccessToken = async () => {
+    const response = await fetch(TOKEN_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${basic}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: decodeURIComponent(process.env.SPOTIFY_REFRESH_TOKEN), // Decode the refresh token
+      }),
+    });
   
-    useEffect(() => {
-      const storedToken = window.localStorage.getItem("token");
-      if (storedToken) {
-        setToken(storedToken);
-      }
+    return response.json();
+  };
   
-      const fetchCurrentlyPlaying = async () => {
-        try {
-          const response = await fetch(`${API_BASE}/me/player/currently-playing`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+
+  const fetchNowPlaying = async () => {
+    try {
+      const { access_token } = await getAccessToken();
+      const response = await fetch(NOW_PLAYING_ENDPOINT, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      const data = await response.json();
+      console.log('Now Playing Data:', data); // Log the data received from the API
+      setNowPlaying(data);
+    } catch (error) {
+      console.error('Error fetching now playing:', error);
+    }
+  };
   
-          if (response.status === 401) {
-            // Token expired, handle token refresh here
-            console.log("Token expired. Refresh token logic goes here.");
-          }
-  
-          const data = await response.json();
-  
-          console.log("API Response:", data);
-  
-          if (data && data.item) {
-            setCurrentlyPlaying(data);
-          } else {
-            setCurrentlyPlaying(null);
-          }
-        } catch (error) {
-          console.error("Error fetching currently playing track:", error);
-          setCurrentlyPlaying(null);
-        }
-      };
-  
-      const interval = setInterval(() => {
-        if (token) {
-          fetchCurrentlyPlaying();
-        }
-      }, 10000);
-  
-      return () => clearInterval(interval);
-    }, [token]);
-  
-    const handleLogin = () => {
-      window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${AUTH_SCOPE}`;
-    };
-  
-    return (
-      <div>
-        {token ? (
-          <div>
-            {currentlyPlaying ? (
-              <div>
-                <p>Currently Playing:</p>
-                <p>{currentlyPlaying.item.name}</p>
-                <p>By: {currentlyPlaying.item.artists[0].name}</p>
-              </div>
-            ) : (
-              <p>No track currently playing</p>
-            )}
-          </div>
-        ) : (
-          <button onClick={handleLogin}>Login to Spotify</button>
-        )}
-      </div>
-    );
-  }
-  
+
+  useEffect(() => {
+    fetchNowPlaying();
+    const interval = setInterval(() => {
+      fetchNowPlaying();
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div>
+      <h2>Now Playing</h2>
+      {nowPlaying && nowPlaying.item ? (
+  <div>
+    <p>{nowPlaying.item.name}</p>
+    <p>By: {nowPlaying.item.artists[0].name}</p>
+  </div>
+) : (
+  <p>No track currently playing</p>
+)}
+
+    </div>
+  );
+};
+
+export default Spotify;
