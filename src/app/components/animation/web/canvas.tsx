@@ -23,7 +23,7 @@ export default function CanvasSelector() {
         trigger: canvasRef.current,
         start: "40% 40%",
         end: "bottom 80%", // Updated to last for the full duration
-        scrub: .3,
+        scrub: 1.3,
         onUpdate: (scrollTrigger) => {
           const progress = scrollTrigger.progress;
           updateScrollProgress(progress);

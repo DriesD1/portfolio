@@ -133,6 +133,8 @@ const Spotify = ({ containerClass }) => {
           </div>
         </div>
       )}
+<a href={`https://accounts.spotify.com/authorize?response_type=code&redirect_uri=http://localhost:3000/about&scope=user-read-currently-playing&client_id=${client_id}`} target="_blank" rel="noreferrer"> Login </a>
+
     </div>
   );
 };

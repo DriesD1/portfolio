@@ -31,7 +31,7 @@ export default function Navigation() {
     return (
 <nav className="fixed top-0 z-[100] mb-[3rem]">
   <ul className={`text-[17px] flex items-center gap-[3rem] transition-all duration-300  m-[2rem] text-standard-grey ${scrolling ? 'bg-standard-blur' : ''} pr-[3rem] pl-[3rem] pt-[0.9rem] pb-[0.9rem] rounded-[5rem] backdrop-blur`}>
-    <li className={isActive(ROUTES.HOME) ? 'active-link bg-standard-blur' : ''}><Link to={ROUTES.HOME}>Home</Link></li>
+    <li className={ isActive(ROUTES.HOME) ? 'active-link bg-standard-blur' : ''}><Link to={ROUTES.HOME}>Home</Link></li>
     <li className={isActive(ROUTES.ABOUT) ? 'active-link bg-standard-blur' : ''}><Link to={ROUTES.ABOUT}>About</Link></li>
     <li className={isActive(ROUTES.PROJECTS) ? 'active-link bg-standard-blur' : ''}><Link to={ROUTES.PROJECTS}>Projects</Link></li>
     <li className={isActive(ROUTES.BLOGS) ? 'active-link bg-standard-blur' : ''}><Link to={ROUTES.BLOGS}>Blogs</Link></li>
