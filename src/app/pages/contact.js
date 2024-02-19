@@ -12,7 +12,7 @@ export default function ContactPage() {
 
         <section>
         <ContactTitle />
-          <div className="max-w-[70rem] ml-[1rem] mr-[1rem] flex items-center w-full mx-auto">
+          <div className="max-w-[70rem] ml-[1rem] mr-[1rem] flex items-center w-full mx-auto justify-center">
             <div>
               <DesContact />
               <Links />

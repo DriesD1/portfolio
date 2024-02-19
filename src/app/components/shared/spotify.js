@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as SpotifyLogo }  from "./assets/spotify.svg";
+import { ReactComponent as SpotifyLogo } from "./assets/spotify.svg";
 
 const Spotify = ({ containerClass }) => {
   const [nowPlaying, setNowPlaying] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [fetchingToken, setFetchingToken] = useState(false);
 
-  // Ensure that your environment variables are correctly set
   const client_id = "2fd6cb51b0ee4bfd9597ffa96af14c3b";
   const client_secret = "6e790b0f11ff48e59d607ed1385b84a0";
-  const NOW_PLAYING_ENDPOINT =
-    "https://api.spotify.com/v1/me/player/currently-playing";
+  const NOW_PLAYING_ENDPOINT = "https://api.spotify.com/v1/me/player/currently-playing";
   const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 
-  const getAccessToken = async (code) => {
+  const getAccessToken = async (code, refreshToken = null) => {
     setFetchingToken(true);
 
     const formData = new URLSearchParams();
-    formData.append("code", code);
-    formData.append("redirect_uri", "http://localhost:3000/about");
-    formData.append("grant_type", "authorization_code");
+    formData.append("grant_type", refreshToken ? "refresh_token" : "authorization_code");
+    if (refreshToken) {
+      formData.append("refresh_token", refreshToken);
+    } else {
+      formData.append("code", code);
+      formData.append("redirect_uri", "http://localhost:3000/about");
+    }
 
     const authOptions = {
       method: "POST",
@@ -37,6 +39,9 @@ const Spotify = ({ containerClass }) => {
       if (response.ok) {
         localStorage.setItem("spotify_access_token", data.access_token);
         setAccessToken(data.access_token);
+        if (data.refresh_token) {
+          localStorage.setItem("spotify_refresh_token", data.refresh_token);
+        }
       } else {
         console.error("Error refreshing/accessing token:", data.error);
       }
@@ -75,26 +80,29 @@ const Spotify = ({ containerClass }) => {
   useEffect(() => {
     const currentUrl = new URL(window.location.href);
     const code = currentUrl.searchParams.get("code");
-
-    if (code && !accessToken) {
-      getAccessToken(code);
-    } else {
-      const storedToken = localStorage.getItem("spotify_access_token");
-      if (storedToken) {
-        setAccessToken(storedToken);
-      } else if (!code) {
-        window.location.href = `https://accounts.spotify.com/authorize?response_type=code&redirect_uri=http://localhost:3000/about&scope=user-read-currently-playing&client_id=${client_id}`;
-      }
+  
+    const storedToken = localStorage.getItem("spotify_access_token");
+    const refreshToken = localStorage.getItem("spotify_refresh_token");
+  
+    if (storedToken) {
+      setAccessToken(storedToken);
+    } else if (refreshToken) {
+      // If both tokens are available, use the refresh token to get a new access token
+      getAccessToken(null, refreshToken);
+    } else if (!code) {
+      // If neither token nor code is present, initiate the login process
+      window.location.href = `https://accounts.spotify.com/authorize?response_type=code&redirect_uri=http://localhost:3000/about&scope=user-read-currently-playing&client_id=${client_id}`;
     }
-
+  
     const fetchData = async () => {
       await fetchNowPlaying();
-      const interval = setInterval(fetchNowPlaying, 6000);
+      const interval = setInterval(fetchNowPlaying, 60000);
       return () => clearInterval(interval);
     };
-
+  
     fetchData();
   }, [accessToken]);
+  
 
   return (
     <div>
@@ -133,8 +141,6 @@ const Spotify = ({ containerClass }) => {
           </div>
         </div>
       )}
-<a href={`https://accounts.spotify.com/authorize?response_type=code&redirect_uri=http://localhost:3000/about&scope=user-read-currently-playing&client_id=${client_id}`} target="_blank" rel="noreferrer"> Login </a>
-
     </div>
   );
 };
